@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!-- created with Phobos 0.7 -->
+  <robot name="vehicle" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    
+    <link name="base_footprint">
+    </link>
+
+    <link name="base_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1500.0"/>
+        <inertia ixx="1000.0" ixy="0" ixz="0" iyy="1000.0" iyz="0" izz="1000.0"/>
+      </inertial>
+      <visual name="chassis">
+        <origin xyz="0 0 0" rpy="1.57 0 1.57"/>
+        <geometry>
+          <mesh filename="package://weichai_sim/meshes/volvo.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision name="chassis_collision">
+        <origin xyz="0 0 0" rpy="0 0 3.14"/>
+        <geometry>
+          <!--<mesh filename="package://weichai_sim/meshes/volvo.stl" scale="0.001 0.001 0.001"/>-->
+          <box size="1 1 1"/>
+        </geometry> 
+      </collision>
+    </link>
+
+
+    <joint name="base_link" type="fixed">
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <parent link="base_footprint"/>
+      <child link="base_link"/>
+    </joint>
+
+    <material name="black.001">
+      <color rgba="0 0 0 1.0"/>
+    </material>
+
+    <material name="carpaint_002">
+      <color rgba="0.941177 0.941177 0.941177 1.0"/>
+    </material>
+
+    <material name="carpaint_002.001">
+      <color rgba="0.941177 0.941177 0.941177 1.0"/>
+    </material>
+
+    <material name="carpaint_002.002">
+      <color rgba="0.941177 0.941177 0.941177 1.0"/>
+    </material>
+
+    <material name="carpaint_002.003">
+      <color rgba="0.941177 0.941177 0.941177 1.0"/>
+    </material>
+
+  </robot>

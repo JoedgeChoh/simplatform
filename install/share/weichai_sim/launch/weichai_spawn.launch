@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- JMS trying to set statistics param -->
+    <param name="enable_statistics" value="true" />
+    <arg name="robot1" default="weichai_sim"/>
+    
+    <arg name="X" default="0"/>
+    <arg name="Y" default="0"/>
+    <arg name="Z" default="0.356"/>
+    <arg name="roll" default="0"/>
+    <arg name="pitch" default="0"/>
+    <arg name="yaw" default="-1.57"/> 
+    
+    <!--<arg name="X" default="-2830.5"/>
+    <arg name="Y" default="66000"/>
+    <arg name="Z" default="0.356"/>
+    <arg name="roll" default="0"/>
+    <arg name="pitch" default="0"/>
+    <arg name="yaw" default="-1.57"/>-->
+
+    <group ns="$(arg robot1)">
+        <!-- <param name="robot_description" command="$(find xacro)/xacro.py '$(find weichai_sim)/urdf/weichai_sim.xacro' roboname:='$(arg robot1)'" /> -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find weichai_sim)/urdf/weichai_sim.xacro' roboname:='$(arg robot1)'" />
+        <include file="$(find weichai_sim)/launch/weichai_sim.launch">
+            <arg name="robot_name" value="$(arg robot1)"/>
+            <arg name="init_pose" value="-x $(arg X) -y $(arg Y) -z $(arg Z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
+            <arg name="config_file" value="weichai_control.yaml"/>
+        </include>
+    </group>
+
+</launch>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="robot_name" />
+  <arg name="initial_postn"/>
+
+  <!--Load vehicle model-->
+  <node name="urdf_spawner$(arg robot_name)" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+  args="$(arg initial_postn) -urdf -model $(arg robot_name) -param robot_description"/>
+  <param name="tf_prefix" value="vehicle"/>
+
+<!--Joint states to tf-->
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/$(arg robot_name)/joint_states" />
+</node>
+
+<!--Publish states of uncontrolled joints-->
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/$(arg robot_name)/joint_states" />
+</node>
+
+</launch>

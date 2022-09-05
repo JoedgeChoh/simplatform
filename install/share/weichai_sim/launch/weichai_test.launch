@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<launch>
+    <!--车辆模型发布的话题-->  
+  <arg name="odom_topic" default="weichai_sim/odom"/>
+  <arg name="steering_report" default="weichai_sim/ieps_status"/>
+
+  <!--模块介入标志位-->
+  <arg name="USE_PERCEPTION" default="true"/>
+  <arg name="USE_CONTROL" default="true"/>
+  <arg name="USE_PLANNING" default="true"/>
+
+  <!-- <include file="$(find weichai_sim)/launch/vehicle.launch" /> -->
+  
+  <group if="$(arg USE_CONTROL)">                                                                                    
+  <include file="$(find weichai_controller_core)/launch/weichai_controller.launch">
+    <arg name="odom_topic" value="$(arg odom_topic)"/>
+    <arg name="steering_report" value="$(arg steering_report)"/>
+  </include>
+  </group>
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find vec_map)/rviz/planning.rviz"/>
+ 
+  <group if="$(arg USE_PERCEPTION)">                                                                                    
+      <include file="$(find object_detection)/launch/perception.launch">
+        <arg name="vlp16_bl_topic" default="/lidar/vlp16_bl/PointCloud2"/>
+        <arg name="vlp16_fl_topic" default="/lidar/vlp16_fl/PointCloud2"/>
+        <arg name="vlp16_br_topic" default="/lidar/vlp16_br/PointCloud2"/>
+        <arg name="vlp16_fr_topic" default="/lidar/vlp16_fr/PointCloud2"/>
+        <arg name="vlp32_fl_topic" default="/lidar/hdl32_fl/PointCloud2"/>
+        <arg name="vlp32_fr_topic" default="/lidar/hdl32_fr/PointCloud2"/>
+  </include>>
+
+  </group>
+  
+  <group if="$(arg USE_PLANNING)">                                                                                    
+  <include file="$(find multi_path_generator)/launch/multi_path_generator_weichai_20.launch">
+    <arg name="odom_topic" value="$(arg odom_topic)"/>
+    <arg name="steering_report" value="$(arg steering_report)"/>
+  </include>
+  </group>
+
+  <!--<node pkg="can_parser" type="keyboard_parsing_node.py" name="keyboard_parsing_node"/>-->
+  <!--车辆模型加载-->
+  <include file="$(find weichai_sim)/launch/weichai_spawn.launch">
+  </include>
+
+  <!--场景加载-->
+  <include file="$(find weichai_sim)/launch/gazebo_empty.launch">
+  </include>
+  
+  <!--origin -->
+  <!--<node pkg="tf2_ros" type="static_transform_publisher" name="link_footprint" args="0 0 -0.362 0 0 0 weichai_sim/base_link base_footprint"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="weichaiodom_world" args="0 0 0 0 0 0 world weichai_sim/odom"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_world" args="700000 4000000 0 0 0 0 odom world"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_datum" args="700000 4000000 0 0 0 0 odom datum"/>-->
+
+  <!--fixed-->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="link_footprint" args="0 0 -0.362 0 0 0 weichai_sim/base_link base_footprint"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="weichaiodom_worlds" args="0 0 0 0 0 0 worlds weichai_sim/odom"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_worlds" args="700000 4000000 0 0 0 0 odom worlds"/>
+  <!--multi_path_generator_weichai_20.launch已经存在这一节点，注销保障不重复-->
+  <!--<node pkg="tf2_ros" type="static_transform_publisher" name="odom_datum" args="700000 4000000 0 0 0 0 odom datum"/>-->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="worlds_world" args="2830.5 -66001.8 0 0 0 0 worlds world"/>
+ 
+  <!--激光到ins的tf标定-->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="HDL32_fl_velo32_left" args="0 0 0 0 0 0 weichai_sim/HDL32_fl velo32_left"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="HDL32_fr_velo32_right" args="0 0 0 0 0 0 weichai_sim/HDL32_fr velo32_right"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="VLP16_fl_velo16_leftfront" args="0 0 0 0 0 0 weichai_sim/VLP16_fl velo16_leftfront"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="VLP16_fr_velo16_rightfront" args="0 0 0 0 0 0 weichai_sim/VLP16_fr velo16_rightfront"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="VLP16_bl_velo16_leftback" args="0 0 0 0 0 0 weichai_sim/VLP16_bl velo16_leftback"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="VLP16_br_velo16_right_back" args="0 0 0 0 0 0 weichai_sim/VLP16_br velo16_right_back"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="perfect_gps_ins" args="0 0 0 0 0 0 weichai_sim/perfect_gps ins"/>
+
+  <!--订阅控制算法发布的转向制动油门话题，发布车辆模型的速度话题-->
+  <node pkg="weichai_sim" type="weichai_sim_core" name="weichai_sim_core" output="screen">
+      <!--Parameter-->
+      <param name="control_rate" value="100.0"/>
+      <!--Subscriber-->
+      <remap from="driving_command" to="driving_command"/>
+      <remap from="ebooster_command" to="ebooster_command"/>
+      <remap from="ieps_control_command" to="ieps_control_command"/>
+      <!--Publisher-->
+      <remap from="cmd_vel" to="weichai_sim/cmd_vel"/>
+  </node>
+</launch>

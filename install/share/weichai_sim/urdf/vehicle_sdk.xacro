@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<robot name="vehicle" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <!-- Necessary includes -->
+  <xacro:include filename="$(find weichai_sim)/urdf/vehicle_model_sq.urdf.xacro" />
+  <xacro:include filename="$(find weichai_sim)/urdf/vehicle_gazebo_sq.urdf.xacro" />
+
+ 
+  <xacro:include filename="$(find velodyne_description)/urdf/LIVOX-32E.urdf.xacro"/>
+  <LIVOX-32E parent="base_link" name="VLP32C_fl" topic="/lidar/vlp32c_fl/PointCloud2" hz="20" samples="3600" min_range="0.4" max_range="200" min_angle_horizontal="-${M_PI}" max_angle_horizontal="${M_PI}" max_angle_vertical="${15*M_PI/180.0}" min_angle_vertical="-${25*M_PI/180.0}" resolution_vertical="1" resolution_horizontal="1"
+ >
+    <origin xyz="0.98 1.2 0.9" rpy="0 0 0" />
+  </LIVOX-32E>
+  <!--<xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro"/>
+  <HDL-32E parent="base_link" name="HDL32_fr" topic="/lidar/hdl32_fr/PointCloud2" hz="20" samples="1800" min_range="0.4" max_range="200">
+    <origin xyz="0.98 -1.15 0.8" rpy="0 0 0" />
+  </HDL-32E>-->
+
+ <xacro:include filename="$(find velodyne_description)/urdf/LIVOX-32E.urdf.xacro"/>
+  <LIVOX-32E parent="base_link" name="VLP32C_fr" topic="/lidar/vlp32c_fr/PointCloud2" hz="20" samples="3600" min_range="0.4" max_range="200" min_angle_horizontal="-${M_PI}" max_angle_horizontal="${M_PI}" max_angle_vertical="${15*M_PI/180.0}" min_angle_vertical="-${25*M_PI/180.0}" resolution_vertical="1" resolution_horizontal="1">
+    <origin xyz="0.98 -1.2 0.9" rpy="0 0 3.14" />
+  </LIVOX-32E>
+
+
+  <xacro:include filename="$(find velodyne_description)/urdf/LIVOX-32E.urdf.xacro"/>
+  <LIVOX-32E parent="base_link" name="VLP32C_top" topic="/lidar/vlp32c_top/PointCloud2" hz="20" samples="3600" min_range="0.4" max_range="200" min_angle_horizontal="-${M_PI}" max_angle_horizontal="${M_PI}" max_angle_vertical="${15*M_PI/180.0}" min_angle_vertical="-${25*M_PI/180.0}" resolution_vertical="1" resolution_horizontal="1">
+    <origin xyz="0.78 0 3" rpy="0 0 3.14" />
+  </LIVOX-32E>
+
+</robot>

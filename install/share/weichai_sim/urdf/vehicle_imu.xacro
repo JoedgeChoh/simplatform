@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+
+<!--IMU-->
+
+<robot name="vehicle_imu" xmlns:xacro="http://www.ros.org/wiki/xacro">
+ <xacro:macro name="vehicle_imu" params="name parent_link x y z" >
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <parent link="${parent_link}"/>
+    <child link="imu_link"/>
+  </joint>
+
+    <link name="imu_link">
+      <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+      </inertial>
+       <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.042 0.057 0.0236" /><!--Xsens size-->
+        </geometry>
+        <material name="orange">
+          <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.042 0.057 0.0236" /><!--Xsens size-->
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="imu_link">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+    <gazebo>
+        <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+          <alwaysOn>true</alwaysOn>
+          <bodyName>imu_link</bodyName>
+          <frameId>${name}</frameId>
+          <topicName>imu</topicName>
+          <serviceName>imu_service</serviceName>
+          <gaussianNoise>0.0</gaussianNoise>
+          <updateRate>30.0</updateRate>
+        </plugin>
+    </gazebo>
+ </xacro:macro>
+</robot>

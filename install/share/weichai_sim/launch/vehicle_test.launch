@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+	  <arg name="paused" default="false"/>
+	  <arg name="use_sim_time" default="true"/>
+	  <arg name="gui" default="false"/>
+	  <arg name="debug" default="false"/>
+
+  <!--Load scene-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find weichai_sim)/worlds/empty_world.world"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>  
+  </include>
+
+<!--Load vehicle-->
+<group ns="vehicle">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find weichai_sim)/urdf/vehicle_sdk.xacro roboname:='vehicle'" />
+  <include file="$(find weichai_sim)/launch/vehicle.launch">
+      <arg name="robot_name" value="vehicle"/>
+      <arg name="initial_postn" value="-x 0 -y 0 -z 0.5"/>
+  </include>
+</group>
+
+  <!--Gazebo-->
+ <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen"/> 
+
+  <!--Rviz-->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find weichai_sim)/rviz/vehicle_sdk.rviz"/>
+
+</launch>

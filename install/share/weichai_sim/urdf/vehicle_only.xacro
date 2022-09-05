@@ -1,0 +1,287 @@
+<?xml version="1.0" ?>
+
+<robot name="$(arg roboname)" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:property name="PI" value="3.1415926835897931"/>
+  <xacro:property name="base_height" value="0.4"/>
+  <xacro:property name="tyre_y" value="0.855"/>
+  <xacro:property name="tyre_length" value="0.225"/>
+  <xacro:property name="tyre_radius" value="0.362"/>
+  <xacro:property name="str_length" value="0.01"/>
+  <xacro:property name="str_radius" value="0.1"/>
+  <xacro:property name="str_angle" value="0.6"/>
+  <xacro:property name="wheelbase" value="3.665"/>
+  <xacro:property name="car_length" value="6.11"/>
+  <xacro:property name="car_height" value="2.04"/>
+  <xacro:property name="car_width" value="2.632"/>
+
+  <xacro:property name="tyre_origin">
+	    <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+  </xacro:property>
+  <xacro:property name="tyre_origin_2">
+      <origin xyz="0 0 0" rpy="0 0 ${PI/2}"/>
+  </xacro:property>
+  <xacro:property name="tyre_origin_3">
+      <origin xyz="0 0 0" rpy="0 0 ${-PI/2}"/>
+  </xacro:property>
+  
+	<xacro:include filename="$(find weichai_sim)/urdf/weichai_sim.gazebo"/>
+
+<!--Car Body-->
+<link name="base_link">
+     <inertial>
+        <origin xyz="${wheelbase/2} 0 ${base_height}" rpy="0 0 0"/>
+        <mass value="3000.000000"/>
+        <inertia ixx="480" ixy="0.000000" ixz="0.000000" iyy="1370" iyz="0.000000" izz="1370"/>
+      </inertial>
+
+     <visual>
+        <origin xyz="0 0 -0.362" rpy="0 0 ${PI/2}"/>  
+        <geometry>
+          <mesh filename="package://weichai_sim/meshes/body.dae"/>
+        </geometry>
+     </visual>
+
+      <collision name="chassis_collision">
+        <origin xyz="0 0 -0.362" rpy="0 0 ${PI/2}"/>
+        <geometry>
+          <mesh filename="package://weichai_sim/meshes/body_collision.stl"/>
+        </geometry>
+      </collision>
+</link>
+
+<!--Right Steering-->
+<link name="front_right_steering_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="1.00"/>
+    <inertia
+          ixx="0.4"  ixy="0.000000"  ixz="0.000000"
+          iyy="0.6"  iyz="0.000000"
+          izz="0.4"/>
+  </inertial>
+</link>
+
+<!--Left Steering-->
+<link name="front_left_steering_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.00"/>
+        <inertia
+          ixx="0.4"  ixy="0.000000"  ixz="0.000000"
+          iyy="0.6"  iyz="0.000000"
+          izz="0.4"/>
+      </inertial>
+</link>
+
+<!--Front Right Wheel-->
+<link name="front_right_wheel_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 ${PI} 0"/>
+        <mass value="10.00"/>
+        <inertia
+          ixx="0.4"  ixy="0.000000"  ixz="0.000000"
+          iyy="0.6"  iyz="0.000000"
+          izz="0.4"/>
+      </inertial>
+
+     <visual>
+      <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+        <geometry>
+          <mesh filename="package://weichai_sim/meshes/ford_escape_wheel.dae"/>
+        <scale xyz="1.2 1 1"/>
+       </geometry>  
+      </visual>
+
+     <collision>
+        <origin xyz="0 0 0" rpy="0 ${PI} 0"/>
+        <geometry>
+          <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+	      </geometry>
+     </collision>
+
+</link>
+
+<!--Front Left Wheel-->
+<link name="front_left_wheel_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 ${-PI} 0"/>
+        <mass value="10.00"/>
+        <inertia
+          ixx="0.4"  ixy="0.000000"  ixz="0.000000"
+          iyy="0.6"  iyz="0.000000"
+          izz="0.4"/>
+      </inertial>
+
+     <visual>
+      <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+       <geometry>
+          <mesh filename="package://weichai_sim/meshes/ford_escape_wheel.dae"/>
+            <scale xyz="1.2 1 1"/>
+       </geometry>
+      </visual>
+
+      <collision>     
+	      <origin xyz="0 0 0" rpy="0 ${-PI} 0"/>
+        <geometry>
+         <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+        </geometry>
+     </collision>
+</link>
+
+<!--Back Right Wheel-->
+<link name="back_right_wheel_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 ${PI} 0"/>
+        <mass value="10.00"/>
+        <inertia
+          ixx="0.4"  ixy="0.000000"  ixz="0.000000"
+          iyy="0.6"  iyz="0.000000"
+          izz="0.4"/>
+      </inertial>
+
+     <visual>
+      <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+        <geometry>
+          <mesh filename="package://weichai_sim/meshes/ford_escape_wheel.dae"/>
+          <scale xyz="1.2 1 1"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 ${PI} 0"/>
+        <geometry>
+         <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+        </geometry>
+     </collision>
+</link>
+
+<!--Back Left Wheel-->
+<link name="back_left_wheel_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 ${-PI} 0"/>
+        <mass value="10.00"/>
+        <inertia
+          ixx="0.4"  ixy="0.000000"  ixz="0.000000"
+          iyy="0.6"  iyz="0.000000"
+          izz="0.4"/>
+      </inertial>
+
+     <visual>
+        <origin xyz="0 0 0" rpy="0 ${PI/2} 0"/>
+        <geometry>
+          <mesh filename="package://weichai_sim/meshes/ford_escape_wheel.dae"/>
+          <scale xyz="1.2 1 1"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 ${-PI} 0"/>
+        <geometry>
+         <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+        </geometry>
+     </collision>
+</link>
+
+<joint name="front_right_steering_joint" type="revolute">
+	<parent link="base_link"/>
+	<child link="front_right_steering_link"/>
+	<origin xyz="${wheelbase} ${-tyre_y} 0" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+	<limit effort="1000.0" lower="${-str_angle}" upper="${str_angle}" velocity="0.5"/>
+</joint>
+
+<joint name="front_left_steering_joint" type="revolute">
+  <parent link="base_link"/>
+  <child link="front_left_steering_link"/>
+  <origin xyz="${wheelbase} ${tyre_y} 0" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="1000.0" lower="${-str_angle}" upper="${str_angle}" velocity="0.5"/>
+</joint>
+
+<joint name="front_left_wheel_joint" type="continuous">
+      <parent link="front_left_steering_link"/>
+      <child link="front_left_wheel_link"/>
+      <origin xyz="0 0 0" rpy="${PI/2} 0 ${-PI}"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="0.0" velocity="100.0" />
+</joint>
+
+<joint name="front_right_wheel_joint" type="continuous">
+      <parent link="front_right_steering_link"/>
+      <child link="front_right_wheel_link"/>
+      <origin xyz="0 0 0" rpy="${PI/2} 0 ${-PI}"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="0.0" velocity="100.0" />
+</joint>
+
+<joint name="back_right_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="back_right_wheel_link"/>
+      <origin xyz="0 ${-tyre_y} 0" rpy="${PI/2} 0 ${-PI}"/>
+      <axis xyz="0 0 1"/>
+      <dynamics damping="0.1"/>
+      <limit effort="10000" velocity="100" />
+      <joint_properties damping="0.0" friction="5.0" />
+</joint>
+
+<joint name="back_left_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="back_left_wheel_link"/>
+      <origin xyz="0 ${tyre_y} 0" rpy="${PI/2} 0 ${-PI}"/>
+      <axis xyz="0 0 1"/>
+      <dynamics damping="0.1"/>
+      <limit effort="10000" velocity="100" />
+      <joint_properties damping="0.0" friction="5.0" />
+</joint>
+
+
+
+
+<!-- motors and transmissions for the two rear wheels -->
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_right_wheel_joint">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_left_wheel_joint">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="rack_and_pinion_left">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_steering_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="eps_left">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="rack_and_pinion_right">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_steering_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="eps_right">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>

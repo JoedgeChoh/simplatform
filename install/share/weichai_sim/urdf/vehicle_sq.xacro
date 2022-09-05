@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+
+<robot name="vehicle" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <!-- Necessary includes -->
+  <xacro:include filename="$(find weichai_sim)/urdf/vehicle_model_sq.urdf.xacro" />
+  <xacro:include filename="$(find weichai_sim)/urdf/vehicle_gazebo_sq.urdf.xacro" />
+
+  <!-- Bolt-on sensors go here -->
+  <!-- <xacro:include filename="$(find weichai_sim)/urdf/vehicle_sensors.urdf.xacro" />
+  <xacro:vehicle_camera name="front_camera" parent_link="base_footprint" x="2.0" y="0" z="1.3" roll="0" pitch="0.6" yaw="0" />
+  <xacro:vehicle_gps name="perfect_gps" parent_link="base_footprint" x="0.6" y="0" z="1.45" rate="50.0" ref_lat="45.0" ref_lon="-81.0" />
+
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <VLP-16 parent="base_footprint" name="velodyne" topic="velodyne_points" hz="10" samples="440">
+    <origin xyz="1.1 0 1.49" rpy="0 0 0" />
+  </VLP-16> -->
+
+    <!-- Bult-on sensors go here -->
+  <!--Cameras-->
+  <!--<xacro:include filename="$(find weichai_sim)/urdf/vehicle_sensors.urdf.xacro" />
+  <xacro:front_camera name="front_camera_long" parent_link="base_link" x="3.2" y="0.0" z="1.6" roll="0" pitch="0.0" yaw="0" horizontal_fov="1.0471975511965976" image_width="1384" image_height="1024" />
+  <xacro:front_camera name="front_camera_short" parent_link="base_link" x="3.2" y="0.2" z="1.6" roll="0" pitch="0.0" yaw="0" horizontal_fov="2.0943951023931953" image_width="1384" image_height="1024" />
+  <xacro:fisheye_camera name="left_fisheye" parent_link="base_link" x="3.38" y="1.0" z="1.05" roll="0" pitch="0.3" yaw="0.7853981633974483" horizontal_fov="3.31" image_width="1384" image_height="1024"/>
+  <xacro:fisheye_camera name="right_fisheye" parent_link="base_link" x="3.38" y="-1.0" z="1.05" roll="0" pitch="0.3" yaw="-0.7853981633974483" horizontal_fov="3.31" image_width="1384" image_height="1024" />
+  <xacro:fisheye_camera name="front_fisheye" parent_link="base_link" x="4.7" y="0.0" z="0.4" roll="0" pitch="0.0" yaw="0.0" horizontal_fov="6.283" image_width="320" image_height="240"/>
+  <xacro:fisheye_camera name="back_fisheye" parent_link="base_link" x="-1.3" y="0.0" z="0.18" roll="0" pitch="0.3" yaw="-3.14" horizontal_fov="3.31" image_width="1384" image_height="1024" />-->
+
+
+  <!--lowre 17 degrees, maximum 22degrees, yaw: 30degree, fov: 120 degree-->
+
+  <!--MMW radars-->
+  <!-- <xacro:mmw_radar name="mmw_fm" parent_link="base_link" x="4.6" y="0.0" z="0.3" roll="0" pitch="0.0" yaw="-1.57"  />
+  <xacro:mmw_radar name="mmw_bl" parent_link="base_link" x="-1.13" y="0.8" z="0.18" roll="0" pitch="3.14" yaw="-1.832595"  />
+  <xacro:mmw_radar name="mmw_lr" parent_link="base_link" x="-1.13" y="-0.8" z="0.18" roll="0" pitch="3.14" yaw="-1.832595"  /> -->
+  
+  
+
+  <!--IMU-->
+  <!-- <xacro:pioneer_imu name="perfect_imu" parent_link="base_link" x="0" y="0.2" z="0.6" /> -->
+
+
+  <!--Velodyne Lidars-->
+  <!-- <xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro"/>
+  <HDL-32E parent="base_footprint" name="HDL32" topic="/lidar/hdl32/PointCloud2" hz="20" samples="440">
+    <origin xyz="1.8325 0 1.97" rpy="0 0 0" />
+  </HDL-32E> -->
+
+  <!--<xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro"/>
+  <HDL-32E parent="base_link" name="HDL32_fl" topic="/lidar/hdl32_fl/PointCloud2" hz="20" samples="1800" min_range="0.4" max_range="200" >
+    <origin xyz="0.98 1.15 0.8" rpy="0 0 0" />
+  </HDL-32E>-->
+  
+  <xacro:include filename="$(find velodyne_description)/urdf/LIVOX-32E.urdf.xacro"/>
+  <LIVOX-32E parent="base_link" name="LIVOX32_fl" topic="/lidar/livox32_fl/PointCloud2" hz="20" samples="1800" min_range="0.4" max_range="200" min_angle_horizontal="-${M_PI}" max_angle_horizontal="${M_PI}" max_angle_vertical="${15*M_PI/180.0}" min_angle_vertical="-${25*M_PI/180.0}" resolution_vertical="0.33" resolution_horizontal="0.4"
+ >
+    <origin xyz="0.98 1.15 0.8" rpy="0 0 0" />
+  </LIVOX-32E>
+  <!--<xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro"/>
+  <HDL-32E parent="base_link" name="HDL32_fr" topic="/lidar/hdl32_fr/PointCloud2" hz="20" samples="1800" min_range="0.4" max_range="200">
+    <origin xyz="0.98 -1.15 0.8" rpy="0 0 0" />
+  </HDL-32E>-->
+
+ <xacro:include filename="$(find velodyne_description)/urdf/LIVOX-32E.urdf.xacro"/>
+  <LIVOX-32E parent="base_link" name="LIVOX32_fr" topic="/lidar/livox32_fr/PointCloud2" hz="20" samples="1800" min_range="0.4" max_range="200" min_angle_horizontal="-${M_PI}" max_angle_horizontal="${M_PI}" max_angle_vertical="${15*M_PI/180.0}" min_angle_vertical="-${25*M_PI/180.0}" resolution_vertical="0.33" resolution_horizontal="0.4">
+    <origin xyz="0.98 -1.15 0.8" rpy="0 0 3.14" />
+  </LIVOX-32E>
+
+
+  <!--<xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <VLP-16 parent="base_link" name="VLP16_up" topic="/lidar/vlp16_fl/PointCloud2" hz="20" samples="1800" min_range="0.4" max_range="150.0">
+    <origin xyz="0 0 2.6" rpy="0 0 0" />
+  </VLP-16>-->
+  <xacro:include filename="$(find velodyne_description)/urdf/LIVOX-16.urdf.xacro"/>
+  <LIVOX-16 parent="base_link" name="LIVOX16_top" topic="/lidar/livox16_top/PointCloud2" hz="20" samples="1800" min_range="0.4" max_range="150.0" min_angle_horizontal="-${M_PI}" max_angle_horizontal="${M_PI}" max_angle_vertical="${15*M_PI/180.0}" min_angle_vertical="-${15*M_PI/180.0}" resolution_vertical="1" resolution_horizontal="1">
+    <origin xyz="0 0 2.6" rpy="0 0 0" />
+  </LIVOX-16>
+
+  <xacro:include filename="$(find velodyne_description)/urdf/LIVOX-32E.urdf.xacro"/>
+  <LIVOX-32E parent="base_link" name="LIVOX32_back" topic="/lidar/livox32_back/PointCloud2" hz="20" samples="1800" min_range="0.5" max_range="130" min_angle_horizontal="-${40*M_PI/180.0}" max_angle_horizontal="${40*M_PI/180.0}" max_angle_vertical="${12.5*M_PI/180.0}" min_angle_vertical="-${12.5*M_PI/180.0}" resolution_vertical="0.28" resolution_horizontal="0.03">
+    <origin xyz="-4.8 0 0.1" rpy="0 0 3.14" />
+  </LIVOX-32E>
+
+  <!--<xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <VLP-16 parent="base_link" name="VLP16_fl" topic="/lidar/vlp16_fl/PointCloud2" hz="10" samples="440" collision_range="0.9" min_range="0.9" max_range="130.0">
+    <origin xyz="4.46 0.86 0.25" rpy="0 0 0" />
+  </VLP-16>
+
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <VLP-16 parent="base_link" name="VLP16_fr" topic="/lidar/vlp16_fr/PointCloud2" hz="10" samples="440"  collision_range="0.9" min_range="0.9" max_range="130.0">
+    <origin xyz="4.46 -0.86 0.25" rpy="0 0 0" />
+  </VLP-16> 
+
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <VLP-16 parent="base_link" name="VLP16_bl" topic="/lidar/vlp16_bl/PointCloud2" hz="10" samples="440"  collision_range="0.9" min_range="0.9" max_range="130.0">
+    <origin xyz="-1.1 0.9 0.25" rpy="0 0 0" />
+  </VLP-16>
+
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <VLP-16 parent="base_link" name="VLP16_br" topic="/lidar/vlp16_br/PointCloud2" hz="10" samples="440"  collision_range="0.9" min_range="0.9" max_range="130.0">
+    <origin xyz="-1.1 -0.9 0.25" rpy="0 0 0" />
+  </VLP-16>-->
+</robot>

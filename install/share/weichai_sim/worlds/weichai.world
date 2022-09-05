@@ -1,0 +1,1753 @@
+<?xml version="1.0"?>
+<sdf version='1.6'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>5000 5000</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>5000 5000</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>-10.0354 -6.4549 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>6298 259000000</sim_time>
+      <real_time>1149 784655829</real_time>
+      <wall_time>1598512410 994055459</wall_time>
+      <iterations>211595</iterations>
+      <model name='ground_plane'>
+        <pose frame=''>-2830 66000 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-2830 66000 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='weichai'>
+        <pose frame=''>-2816.31 66242 -0.007062 -0.000217 9e-06 1.57061</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-2816.31 66242 -0.007062 -0.000217 9e-06 1.57061</pose>
+          <velocity>-5e-06 3.3e-05 -0.255576 -0.000341 -0.00816 -1e-06</velocity>
+          <acceleration>-0.000144 0.001223 -9.51478 -1.85483 -0.312343 3.14043</acceleration>
+          <wrench>-0.000144 0.001223 -9.51478 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='weichai_sim'>
+        <pose frame=''>-2830.5 65999.9 0.35163 0 0.000911 -1.57001</pose>
+        <scale>1 1 1</scale>
+        <link name='back_left_wheel_link'>
+          <pose frame=''>-2829.64 65999.9 0.35163 1.5708 0.70486 1.57158</pose>
+          <velocity>1e-06 -0.000319 9e-05 0.000882 2e-06 -0</velocity>
+          <acceleration>0 -2e-06 0 6e-06 -0 0</acceleration>
+          <wrench>1e-06 -2.2e-05 2e-06 0 -0 0</wrench>
+        </link>
+        <link name='back_right_wheel_link'>
+          <pose frame=''>-2831.35 65999.9 0.35163 -1.5708 -0.889978 -1.57</pose>
+          <velocity>1e-06 -0.000319 9e-05 0.000882 2e-06 -0</velocity>
+          <acceleration>0 -2e-06 0 6e-06 -0 0</acceleration>
+          <wrench>1e-06 -2.1e-05 2e-06 0 -0 0</wrench>
+        </link>
+        <link name='base_link'>
+          <pose frame=''>-2830.5 65999.9 0.35163 0 0.000911 -1.57001</pose>
+          <velocity>1e-06 -0.00032 9e-05 -4e-06 0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>4e-06 0.000203 1.2e-05 0 -0 0</wrench>
+        </link>
+        <link name='front_left_steering_link'>
+          <pose frame=''>-2829.64 65996.3 0.348292 0 0.000911 -1.57001</pose>
+          <velocity>0 -0.00032 0.000109 -4e-06 -0 -1e-06</velocity>
+          <acceleration>0.000159 -0.319897 0.108704 -0.002445 -0.000463 -0.001048</acceleration>
+          <wrench>0.000159 -0.319897 0.108704 0 -0 0</wrench>
+        </link>
+        <link name='front_left_wheel_link'>
+          <pose frame=''>-2829.64 65996.3 0.348292 1.5708 -0.247814 1.57158</pose>
+          <velocity>0 -0.00032 0.000107 0.000884 0 -1e-06</velocity>
+          <acceleration>0.00017 -0.319978 0.107131 0.883972 0.000626 -0.000685</acceleration>
+          <wrench>0.001703 -3.19978 1.07131 0 -0 0</wrench>
+        </link>
+        <link name='front_right_steering_link'>
+          <pose frame=''>-2831.35 65996.3 0.348291 0 0.000911 -1.57001</pose>
+          <velocity>0 -0.00032 0.000102 -4e-06 -0 -1e-06</velocity>
+          <acceleration>0.000249 -0.320078 0.101619 -0.002439 -0.000528 -0.000572</acceleration>
+          <wrench>0.000249 -0.320078 0.101619 0 -0 0</wrench>
+        </link>
+        <link name='front_right_wheel_link'>
+          <pose frame=''>-2831.35 65996.3 0.348291 1.57082 -1.35737 1.57157</pose>
+          <velocity>0 -0.00032 0.000106 0.000883 0 -1e-06</velocity>
+          <acceleration>0.00018 -0.319649 0.10634 0.883032 0.000658 -0.00051</acceleration>
+          <wrench>0.001799 -3.19649 1.0634 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>-2859.25 65894.7 231.566 0 1.3618 0.105094</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <model name='weichai'>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://weichai/meshes/weichai.obj</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://weichai/meshes/weichai.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <inertial>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>-2323.38 65965.1 0 0 -0 0</pose>
+    </model>
+    <model name='weichai_sim'>
+      <link name='base_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>1.83407 -6.6e-05 0.401751 0 -0 0</pose>
+          <mass>3010.38</mass>
+          <inertia>
+            <ixx>494.237</ixx>
+            <ixy>-0.366813</ixy>
+            <ixz>1.72751</ixz>
+            <iyy>1436.35</iyy>
+            <iyz>0.0396497</iyz>
+            <izz>1431.37</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_link_fixed_joint_lump__chassis_collision_collision'>
+          <pose frame=''>0 0 -0.362 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/body_collision.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__HDL32_fl_base_link_collision_1'>
+          <pose frame=''>3.5 0.95 1.47212 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.14424</length>
+              <radius>0.04267</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__HDL32_fr_base_link_collision_2'>
+          <pose frame=''>3.5 -0.95 1.47212 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.14424</length>
+              <radius>0.04267</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__VLP16_bl_base_link_collision_3'>
+          <pose frame=''>-1.1 0.9 0.28585 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.0717</length>
+              <radius>0.0516</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__VLP16_br_base_link_collision_4'>
+          <pose frame=''>-1.1 -0.9 0.28585 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.0717</length>
+              <radius>0.0516</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__VLP16_fl_base_link_collision_5'>
+          <pose frame=''>4.46 0.86 0.28585 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.0717</length>
+              <radius>0.0516</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__VLP16_fr_base_link_collision_6'>
+          <pose frame=''>4.46 -0.86 0.28585 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.0717</length>
+              <radius>0.0516</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__back_antenna_collision_7'>
+          <pose frame=''>-0.5 0 2.28 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__front_antenna_collision_8'>
+          <pose frame=''>2.2 0 2.28 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__front_ibeo_collision_9'>
+          <pose frame=''>4.64 0 0.165 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.03 0.06</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__ibeo_collision_10'>
+          <pose frame=''>4.68 0 0.165 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.03 0.06</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__imu_link_collision_11'>
+          <pose frame=''>0 0 0.6 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.042 0.057 0.0236</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__perfect_gps_collision_12'>
+          <pose frame=''>0 -0.2 0.6 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.147 0.125 0.055</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='base_link_visual'>
+          <pose frame=''>0 0 -0.362 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/body.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__HDL32_fl_base_link_visual_1'>
+          <pose frame=''>3.5 0.95 1.4 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/HDL32E_base.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__HDL32_fl_visual_2'>
+          <pose frame=''>3.5 0.95 1.4 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/HDL32E_scan.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__HDL32_fr_base_link_visual_3'>
+          <pose frame=''>3.5 -0.95 1.4 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/HDL32E_base.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__HDL32_fr_visual_4'>
+          <pose frame=''>3.5 -0.95 1.4 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/HDL32E_scan.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_bl_base_link_visual_5'>
+          <pose frame=''>-1.1 0.9 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_base_1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_bl_base_link_visual_6'>
+          <pose frame=''>-1.1 0.9 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_base_2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_bl_visual_7'>
+          <pose frame=''>-1.1 0.9 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_scan.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_br_base_link_visual_8'>
+          <pose frame=''>-1.1 -0.9 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_base_1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_br_base_link_visual_9'>
+          <pose frame=''>-1.1 -0.9 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_base_2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_br_visual_10'>
+          <pose frame=''>-1.1 -0.9 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_scan.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_fl_base_link_visual_11'>
+          <pose frame=''>4.46 0.86 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_base_1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_fl_base_link_visual_12'>
+          <pose frame=''>4.46 0.86 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_base_2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_fl_visual_13'>
+          <pose frame=''>4.46 0.86 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_scan.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_fr_base_link_visual_14'>
+          <pose frame=''>4.46 -0.86 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_base_1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_fr_base_link_visual_15'>
+          <pose frame=''>4.46 -0.86 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_base_2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__VLP16_fr_visual_16'>
+          <pose frame=''>4.46 -0.86 0.25 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/velodyne_description/meshes/VLP16_scan.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__back_antenna_visual_17'>
+          <pose frame=''>-0.5 0 2.28 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/gps_antenna.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__front_antenna_visual_18'>
+          <pose frame=''>2.2 0 2.28 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/gps_antenna.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__front_camera_long_visual_19'>
+          <pose frame=''>3 0 1.6 -1.5708 -0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/camera.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__front_camera_short_visual_20'>
+          <pose frame=''>3 0.2 1.6 -1.5708 -0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/camera.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__front_ibeo_visual_21'>
+          <pose frame=''>4.64 0 0.165 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/ibeo.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__ibeo_visual_22'>
+          <pose frame=''>4.68 0 0.165 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/ibeo_description/meshes/ibeo.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__imu_link_visual_23'>
+          <pose frame=''>0 0 0.6 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.042 0.057 0.0236</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__perfect_gps_visual_24'>
+          <pose frame=''>0 -0.2 0.6 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.147 0.125 0.055</size>
+            </box>
+          </geometry>
+        </visual>
+        <velocity_decay/>
+        <sensor name='HDL32_fl-HDL32E' type='ray'>
+          <visualize>0</visualize>
+          <update_rate>20</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>440</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.14159</min_angle>
+                <max_angle>3.14159</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>32</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.535292</min_angle>
+                <max_angle>0.186227</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.3</min>
+              <max>131</max>
+              <resolution>0.001</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_ros_laser_controller' filename='libgazebo_ros_velodyne_laser.so'>
+            <topicName>/lidar/hdl32_fl/PointCloud2</topicName>
+            <frameName>HDL32_fl</frameName>
+            <min_range>0.9</min_range>
+            <max_range>130.0</max_range>
+            <gaussianNoise>0.008</gaussianNoise>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>3.5 0.95 1.49081 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <sensor name='HDL32_fr-HDL32E' type='ray'>
+          <visualize>0</visualize>
+          <update_rate>20</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>440</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.14159</min_angle>
+                <max_angle>3.14159</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>32</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.535292</min_angle>
+                <max_angle>0.186227</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.3</min>
+              <max>131</max>
+              <resolution>0.001</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_ros_laser_controller' filename='libgazebo_ros_velodyne_laser.so'>
+            <topicName>/lidar/hdl32_fr/PointCloud2</topicName>
+            <frameName>HDL32_fr</frameName>
+            <min_range>0.9</min_range>
+            <max_range>130.0</max_range>
+            <gaussianNoise>0.008</gaussianNoise>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>3.5 -0.95 1.49081 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <sensor name='VLP16_bl-VLP16' type='ray'>
+          <visualize>0</visualize>
+          <update_rate>10</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>440</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.14159</min_angle>
+                <max_angle>3.14159</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>16</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.261799</min_angle>
+                <max_angle>0.261799</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.9</min>
+              <max>131</max>
+              <resolution>0.001</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_ros_laser_controller' filename='libgazebo_ros_velodyne_laser.so'>
+            <topicName>/lidar/vlp16_bl/PointCloud2</topicName>
+            <frameName>VLP16_bl</frameName>
+            <min_range>0.9</min_range>
+            <max_range>130.0</max_range>
+            <gaussianNoise>0.008</gaussianNoise>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>-1.1 0.9 0.2877 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <sensor name='VLP16_br-VLP16' type='ray'>
+          <visualize>0</visualize>
+          <update_rate>10</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>440</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.14159</min_angle>
+                <max_angle>3.14159</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>16</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.261799</min_angle>
+                <max_angle>0.261799</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.9</min>
+              <max>131</max>
+              <resolution>0.001</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_ros_laser_controller' filename='libgazebo_ros_velodyne_laser.so'>
+            <topicName>/lidar/vlp16_br/PointCloud2</topicName>
+            <frameName>VLP16_br</frameName>
+            <min_range>0.9</min_range>
+            <max_range>130.0</max_range>
+            <gaussianNoise>0.008</gaussianNoise>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>-1.1 -0.9 0.2877 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <sensor name='VLP16_fl-VLP16' type='ray'>
+          <visualize>0</visualize>
+          <update_rate>10</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>440</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.14159</min_angle>
+                <max_angle>3.14159</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>16</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.261799</min_angle>
+                <max_angle>0.261799</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.9</min>
+              <max>131</max>
+              <resolution>0.001</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_ros_laser_controller' filename='libgazebo_ros_velodyne_laser.so'>
+            <topicName>/lidar/vlp16_fl/PointCloud2</topicName>
+            <frameName>VLP16_fl</frameName>
+            <min_range>0.9</min_range>
+            <max_range>130.0</max_range>
+            <gaussianNoise>0.008</gaussianNoise>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>4.46 0.86 0.2877 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <sensor name='VLP16_fr-VLP16' type='ray'>
+          <visualize>0</visualize>
+          <update_rate>10</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>440</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.14159</min_angle>
+                <max_angle>3.14159</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>16</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.261799</min_angle>
+                <max_angle>0.261799</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.9</min>
+              <max>131</max>
+              <resolution>0.001</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_ros_laser_controller' filename='libgazebo_ros_velodyne_laser.so'>
+            <topicName>/lidar/vlp16_fr/PointCloud2</topicName>
+            <frameName>VLP16_fr</frameName>
+            <min_range>0.9</min_range>
+            <max_range>130.0</max_range>
+            <gaussianNoise>0.008</gaussianNoise>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>4.46 -0.86 0.2877 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <velocity_decay/>
+        <sensor name='back_fisheye_camera' type='wideanglecamera'>
+          <update_rate>30</update_rate>
+          <always_on>1</always_on>
+          <camera name='__default__'>
+            <horizontal_fov>3.31</horizontal_fov>
+            <image>
+              <width>1384</width>
+              <height>1024</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+            <lens>
+              <type>custom</type>
+              <custom_function>
+                <c1>1.05</c1>
+                <c2>4</c2>
+                <f>1</f>
+                <fun>tan</fun>
+              </custom_function>
+              <scale_to_hfov>1</scale_to_hfov>
+              <cutoff_angle>3.1415</cutoff_angle>
+              <env_texture_size>512</env_texture_size>
+            </lens>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <cameraName>back_fisheye</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>back_fisheye</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>-1.3 0 0.18 0 0.3 -3.14</pose>
+        </sensor>
+        <velocity_decay/>
+        <velocity_decay/>
+        <sensor name='front_camera_long_camera' type='camera'>
+          <update_rate>30</update_rate>
+          <camera name='cam'>
+            <horizontal_fov>1.0472</horizontal_fov>
+            <image>
+              <width>1384</width>
+              <height>1024</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>front_camera_long</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>front_camera_long</frameName>
+            <hackBaseline>0.0</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>3.2 0 1.6 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <sensor name='front_camera_short_camera' type='camera'>
+          <update_rate>30</update_rate>
+          <camera name='cam'>
+            <horizontal_fov>2.0944</horizontal_fov>
+            <image>
+              <width>1384</width>
+              <height>1024</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>front_camera_short</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>front_camera_short</frameName>
+            <hackBaseline>0.0</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>3.2 0.2 1.6 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <sensor name='front_fisheye_camera' type='wideanglecamera'>
+          <update_rate>30</update_rate>
+          <always_on>1</always_on>
+          <camera name='__default__'>
+            <horizontal_fov>6.283</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+            <lens>
+              <type>custom</type>
+              <custom_function>
+                <c1>1.05</c1>
+                <c2>4</c2>
+                <f>1</f>
+                <fun>tan</fun>
+              </custom_function>
+              <scale_to_hfov>1</scale_to_hfov>
+              <cutoff_angle>3.1415</cutoff_angle>
+              <env_texture_size>512</env_texture_size>
+            </lens>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <cameraName>front_fisheye</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>front_fisheye</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>4.7 0 0.4 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <velocity_decay/>
+        <velocity_decay/>
+        <sensor name='ibeo-IBEO4' type='ray'>
+          <visualize>0</visualize>
+          <update_rate>25</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>1440</samples>
+                <resolution>1</resolution>
+                <min_angle>-1.26536</min_angle>
+                <max_angle>1.26536</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>4</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.0279253</min_angle>
+                <max_angle>0.0279253</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.3</min>
+              <max>151</max>
+              <resolution>0.004</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_ros_laser_controller' filename='libgazebo_ros_ibeo_laser.so'>
+            <topicName>/ibeo_points</topicName>
+            <frameName>ibeo</frameName>
+            <min_range>0.9</min_range>
+            <max_range>150.0</max_range>
+            <gaussianNoise>0.0</gaussianNoise>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>4.68 0 0.165 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <velocity_decay/>
+        <sensor name='left_fisheye_camera' type='wideanglecamera'>
+          <update_rate>30</update_rate>
+          <always_on>1</always_on>
+          <camera name='__default__'>
+            <horizontal_fov>3.31</horizontal_fov>
+            <image>
+              <width>1384</width>
+              <height>1024</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+            <lens>
+              <type>custom</type>
+              <custom_function>
+                <c1>1.05</c1>
+                <c2>4</c2>
+                <f>1</f>
+                <fun>tan</fun>
+              </custom_function>
+              <scale_to_hfov>1</scale_to_hfov>
+              <cutoff_angle>3.1415</cutoff_angle>
+              <env_texture_size>512</env_texture_size>
+            </lens>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <cameraName>left_fisheye</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>left_fisheye</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>3.38 1 1.05 0 0.3 0.785398</pose>
+        </sensor>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <sensor name='right_fisheye_camera' type='wideanglecamera'>
+          <update_rate>30</update_rate>
+          <always_on>1</always_on>
+          <camera name='__default__'>
+            <horizontal_fov>3.31</horizontal_fov>
+            <image>
+              <width>1384</width>
+              <height>1024</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+            <lens>
+              <type>custom</type>
+              <custom_function>
+                <c1>1.05</c1>
+                <c2>4</c2>
+                <f>1</f>
+                <fun>tan</fun>
+              </custom_function>
+              <scale_to_hfov>1</scale_to_hfov>
+              <cutoff_angle>3.1415</cutoff_angle>
+              <env_texture_size>512</env_texture_size>
+            </lens>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <cameraName>right_fisheye</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>right_fisheye</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <robotNamespace>/weichai_sim/</robotNamespace>
+          </plugin>
+          <pose frame=''>3.38 -1 1.05 -0 0.3 -0.785398</pose>
+        </sensor>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='back_left_wheel_link'>
+        <pose frame=''>0 0.855 0 1.5708 -0 3.14159</pose>
+        <inertial>
+          <pose frame=''>0 0 0 -3.14159 -0 -3.14159</pose>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.4</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.6</iyy>
+            <iyz>0</iyz>
+            <izz>0.4</izz>
+          </inertia>
+        </inertial>
+        <collision name='back_left_wheel_link_collision'>
+          <pose frame=''>0 0 0 -3.14159 -0 -3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>0.225</length>
+              <radius>0.362</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>10</max_vel>
+                <min_depth>0.01</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>10000</mu>
+                <mu2>10000</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='back_left_wheel_link_visual'>
+          <pose frame=''>0 0 0 -3e-06 1.57079 -3e-06</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/ford_escape_wheel.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='back_left_wheel_joint' type='revolute'>
+        <child>back_left_wheel_link</child>
+        <parent>base_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='back_right_wheel_link'>
+        <pose frame=''>0 -0.855 0 1.5708 -0 3.14159</pose>
+        <inertial>
+          <pose frame=''>0 0 0 3.14159 -0 3.14159</pose>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.4</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.6</iyy>
+            <iyz>0</iyz>
+            <izz>0.4</izz>
+          </inertia>
+        </inertial>
+        <collision name='back_right_wheel_link_collision'>
+          <pose frame=''>0 0 0 3.14159 -0 3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>0.225</length>
+              <radius>0.362</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <max_vel>10</max_vel>
+                <min_depth>0.01</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>10000</mu>
+                <mu2>10000</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='back_right_wheel_link_visual'>
+          <pose frame=''>0 0 0 -3e-06 1.57079 -3e-06</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/ford_escape_wheel.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='back_right_wheel_joint' type='revolute'>
+        <child>back_right_wheel_link</child>
+        <parent>base_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.1</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='front_left_steering_link'>
+        <pose frame=''>3.665 0.855 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.4</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.6</iyy>
+            <iyz>0</iyz>
+            <izz>0.4</izz>
+          </inertia>
+        </inertial>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='front_left_steering_joint' type='revolute'>
+        <child>front_left_steering_link</child>
+        <parent>base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-0.6</lower>
+            <upper>0.6</upper>
+            <effort>1000</effort>
+            <velocity>0.5</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='front_left_wheel_link'>
+        <pose frame=''>3.665 0.855 0 1.5708 -0 3.14159</pose>
+        <inertial>
+          <pose frame=''>0 0 0 -3.14159 -0 -3.14159</pose>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.4</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.6</iyy>
+            <iyz>0</iyz>
+            <izz>0.4</izz>
+          </inertia>
+        </inertial>
+        <collision name='front_left_wheel_link_collision'>
+          <pose frame=''>0 0 0 -3.14159 -0 -3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>0.225</length>
+              <radius>0.362</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+                <max_vel>100</max_vel>
+                <min_depth>0.01</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>10000</mu>
+                <mu2>10000</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='front_left_wheel_link_visual'>
+          <pose frame=''>0 0 0 -3e-06 1.57079 -3e-06</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/ford_escape_wheel.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='front_left_wheel_joint' type='revolute'>
+        <child>front_left_wheel_link</child>
+        <parent>front_left_steering_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='front_right_steering_link'>
+        <pose frame=''>3.665 -0.855 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.4</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.6</iyy>
+            <iyz>0</iyz>
+            <izz>0.4</izz>
+          </inertia>
+        </inertial>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='front_right_steering_joint' type='revolute'>
+        <child>front_right_steering_link</child>
+        <parent>base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-0.6</lower>
+            <upper>0.6</upper>
+            <effort>1000</effort>
+            <velocity>0.5</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='front_right_wheel_link'>
+        <pose frame=''>3.665 -0.855 0 1.5708 -0 3.14159</pose>
+        <inertial>
+          <pose frame=''>0 0 0 3.14159 -0 3.14159</pose>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.4</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.6</iyy>
+            <iyz>0</iyz>
+            <izz>0.4</izz>
+          </inertia>
+        </inertial>
+        <collision name='front_right_wheel_link_collision'>
+          <pose frame=''>0 0 0 3.14159 -0 3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>0.225</length>
+              <radius>0.362</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+                <max_vel>100</max_vel>
+                <min_depth>0.01</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>10000</mu>
+                <mu2>10000</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='front_right_wheel_link_visual'>
+          <pose frame=''>0 0 0 -3e-06 1.57079 -3e-06</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/software/weichai_sim_1.0.2/weichai_sim_ws/src/weichai_sim/meshes/ford_escape_wheel.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='front_right_wheel_joint' type='revolute'>
+        <child>front_right_wheel_link</child>
+        <parent>front_right_steering_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+        <robotNamespace>/weichai_sim</robotNamespace>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      </plugin>
+      <plugin name='joint_state_publisher' filename='libgazebo_ros_joint_state_publisher.so'>
+        <jointName>back_left_wheel_joint, back_right_wheel_joint, front_left_steering_joint, front_right_steering_joint, front_right_wheel_joint, front_left_wheel_joint</jointName>
+        <updateRate>5.0</updateRate>
+        <robotNamespace>/weichai_sim</robotNamespace>
+        <alwaysOn>true</alwaysOn>
+      </plugin>
+      <plugin name='cmdvel_controller' filename='libweichaigazebo.so'>
+        <robotNamespace>/weichai_sim</robotNamespace>
+        <updateRate>100.0</updateRate>
+      </plugin>
+      <plugin name='gps_plugin' filename='libhector_gazebo_ros_gps.so'>
+        <frameId>perfect_gps</frameId>
+        <update_rate>50.0</update_rate>
+        <topicName>/perfect_gps/gps/fix</topicName>
+        <velocityTopicName>/perfect_gps/gps/fix_velocity</velocityTopicName>
+        <referenceLatitude>45.0</referenceLatitude>
+        <referenceLongitude>-81.0</referenceLongitude>
+        <referenceHeading>90</referenceHeading>
+        <referenceAltitude>10</referenceAltitude>
+        <offset>0 -0.2 0.6</offset>
+        <drift>0.001 0.001 0.001</drift>
+        <gaussianNoise>0.05 0.05 0.05</gaussianNoise>
+        <velocityDrift>0.001 0.001 0.001</velocityDrift>
+        <velocityGaussianNoise>0.5 0.5 0.5</velocityGaussianNoise>
+        <robotNamespace>/weichai_sim/</robotNamespace>
+        <bodyName>base_link</bodyName>
+        <xyzOffset>0 0.2 -0.6</xyzOffset>
+        <rpyOffset>0 -0 0</rpyOffset>
+      </plugin>
+      <static>0</static>
+      <plugin name='imu_plugin' filename='libgazebo_ros_imu.so'>
+        <alwaysOn>true</alwaysOn>
+        <frameId>vehicle_imu</frameId>
+        <topicName>imu</topicName>
+        <serviceName>imu_service</serviceName>
+        <gaussianNoise>0.0</gaussianNoise>
+        <updateRate>30.0</updateRate>
+        <robotNamespace>/weichai_sim/</robotNamespace>
+        <bodyName>base_link</bodyName>
+        <xyzOffset>0 0 -0.6</xyzOffset>
+        <rpyOffset>0 -0 0</rpyOffset>
+      </plugin>
+      <pose frame=''>-2830.5 66000 0.356 0 0 -1.57</pose>
+    </model>
+  </world>
+</sdf>

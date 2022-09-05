@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find weichai_sim)/launch/weichai_spawn.launch" />
+  <include file="$(find weichai_sim)/launch/gazebo_empty.launch" />
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="link_footprint" args="0 0 -0.362 0 0 0 weichai_sim/base_link base_footprint"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="weichaiodom_world" args="0 0 0 0 0 0 world weichai_sim/odom"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_world" args="700000 4000000 0 0 0 0 odom world"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_datum" args="700000 4000000 0 0 0 0 odom datum"/>
+
+  <!--cmd_vel control-->
+  <!--<node name="cmd_vel" pkg="weichai_sim" type="weichai_cmd_pub"/>-->
+  
+  <!--vehicle control运a行时需要去掉sim_test.launch中weichai_sim_core节点的注释-->
+  <!--<node name="vehicle_control" pkg="weichai_sim"
+       type="weichai_driving"/>-->
+  
+  
+  <!--<node pkg="weichai_sim" type="weichai_sim_core" name="weichai_sim_core" output="screen">
+      <param name="control_rate" value="100.0"/>
+      <remap from="driving_command" to="driving_command"/>
+      <remap from="ebooster_command" to="ebooster_command"/>
+      <remap from="ieps_control_command" to="ieps_control_command"/>
+      <remap from="cmd_vel" to="weichai_sim/cmd_vel"/>
+  </node>-->
+  <node name="keyboard_controller" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+</launch>
